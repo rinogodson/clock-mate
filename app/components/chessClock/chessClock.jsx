@@ -18,20 +18,25 @@ function ChessClock({ data }) {
   const [isRunning, setIsRunning] = useState(false);
   const [lastSwitchTime, setLastSwitchTime] = useState(Date.now());
   const [incrementTime, setIncrementTime] = useState(data.addTime * 1000);
-  const [isPortrait, setIsPortrait] = useState(
-    window.innerWidth < window.innerHeight
-  );
   const soundRef = useRef(new Howl({src:["tick.wav"]}))
   const bellRef = useRef(new Howl({src:["bell.wav"]}))
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsPortrait(window.innerWidth < window.innerHeight);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
+ const [isPortrait, setIsPortrait] = useState(
+  typeof window !== "undefined" ? window.innerWidth < window.innerHeight : true
+);
+
+useEffect(() => {
+  if (typeof window === "undefined") return;
+
+  const handleResize = () => {
+    setIsPortrait(window.innerWidth < window.innerHeight);
+  };
+
+  handleResize();
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
   useEffect(()=>{
     if (activePlayer === "playerOne") {
       console.log(playerOneTime);
