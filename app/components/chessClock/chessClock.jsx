@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, use } from "react";
 import {
   PlayCircle,
   PauseCircle,
@@ -7,6 +7,8 @@ import {
   ChevronLeftSquareIcon,
 } from "lucide-react";
 import "./clock.css";
+
+import { Howl } from "howler";
 
 function ChessClock({ data }) {
   const [playerOneTime, setPlayerOneTime] = useState(data.time1 * 60 * 1000);
@@ -19,6 +21,8 @@ function ChessClock({ data }) {
   const [isPortrait, setIsPortrait] = useState(
     window.innerWidth < window.innerHeight
   );
+  const soundRef = useRef(new Howl({src:["tick.wav"]}))
+  const bellRef = useRef(new Howl({src:["bell.wav"]}))
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,6 +31,20 @@ function ChessClock({ data }) {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(()=>{
+    if (activePlayer === "playerOne") {
+      console.log(playerOneTime);
+      soundRef.current.pause()
+      soundRef.current.CurrentTime = 0;
+      soundRef.current.play()
+    } else if (activePlayer === "playerTwo") {
+      console.log(playerTwoTime);
+      soundRef.current.pause()
+      soundRef.current.CurrentTime = 0;
+      soundRef.current.play()
+    }
+  }, [Math.floor((playerOneTime % 60000) / 1000), Math.floor((playerTwoTime % 60000) / 1000)])
 
   useEffect(() => {
     let timer;
@@ -50,6 +68,8 @@ function ChessClock({ data }) {
     };
   }, [isRunning, activePlayer, lastSwitchTime]);
 
+  
+
   const toggleStartPause = () => {
     setIsRunning((prev) => !prev);
     if (!isRunning && !activePlayer) setActivePlayer("playerOne");
@@ -57,6 +77,10 @@ function ChessClock({ data }) {
 
   const switchTurn = () => {
     if (!isRunning) return;
+
+    bellRef.current.pause()
+    bellRef.current.CurrentTime = 0;
+    bellRef.current.play()
     if (activePlayer === "playerOne") {
       if(playerMoves.one > data.moves){
         setPlayerOneTime((prev) => prev + incrementTime);
@@ -101,8 +125,8 @@ function ChessClock({ data }) {
           <span className="timerInfo">{playerMoves.one} moves</span>
         </div>
         <div className="division">
-          <button className="clockBt" onClick={toggleStartPause}>
-            {isRunning ? <PauseCircle size={40} /> : <PlayCircle size={40} />}
+          <button className="clockBt" style={{transform: isRunning ? "scale(1)" : "scale(2)"}} onClick={toggleStartPause}>
+            {isRunning ? <PauseCircle size={40} /> : <PlayCircle size={100} />}
           </button>
           <button className="clockBt" onClick={()=>window.location.href="/"}>
             <ChevronLeftSquareIcon size={40} />

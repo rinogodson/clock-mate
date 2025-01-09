@@ -8,7 +8,6 @@ import { useData } from "./DataContext";
 import { Crown } from "lucide-react";
 import { motion } from "framer-motion";
 
-
 function Page() {
   const { setData } = useData();
   const router = useRouter();
@@ -43,6 +42,7 @@ function Page() {
     return hours ? `${hours}h ${mins}m` : `${mins}m`
   };
   return (
+    <div style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center", width:"100vw"}}>
     <div className="optionCont" onClick={enterFullScreen}>
       <div className="optionSection" style={{ flexDirection: "row" }}>
         Time Different for 2 players.
@@ -209,6 +209,8 @@ function Page() {
           setData(options);
           router.push("/clock")
           }}>Continue</button>
+    </div>
+    <img className="welcome" style={{width:"100%"}} src="welcome.png" alt="" />
     </div>
   );
 }

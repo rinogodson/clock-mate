@@ -4,7 +4,7 @@
 
 
 body{
-  background-color: #0b0b0b;
+  background-color: #121212;
   background-repeat: no-repeat;
   color: rgb(240, 255, 244);
   display: flex;
@@ -136,6 +136,9 @@ body{
 }
 
 @media(max-width: 768px) {
+  .welcome{
+    display: none;
+  }
   body{
     justify-content: center;
   align-items: center;
