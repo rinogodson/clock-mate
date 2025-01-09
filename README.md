@@ -49,3 +49,4 @@ Contributions are welcome! Please fork the repository and submit a pull request.
 This project is licensed under the [MIT License](LICENSE).
 
 Github Copilot used for code suggestion.
+used [Figma](https://www.figma.com/design/CLmYpV2twSRoE2XbZrNJlR/ChessMate?node-id=0-1&t=jmCrhBmmoaxAxAJ4-1)
