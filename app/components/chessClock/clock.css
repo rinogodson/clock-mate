@@ -1,0 +1,70 @@
+@font-face{
+    font-family: "Dig7";
+    src: url("/Dig7.ttf") format("truetype");
+  }
+
+.clockCont{
+    display: grid;
+    grid-template-columns: 1fr 100px 1fr;
+    width: 100vw;
+    height: 100vh;
+    place-items: center;
+    gap: 20px;
+    transform: scale(0.95);
+}
+.timer{
+    background-color: rgba(240, 248, 255, 0.193);
+    height: 100%;
+    width: 100%;
+    font-family: Dig7;
+    border: solid 3px #494949;
+    font-size: 9vw;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+.division{
+    background-color: black;
+    height: 100vh;
+    width: 100px;
+}
+.timerInfo{
+    font-family: "JetBrains Mono";
+    font-size: 30px;
+}
+
+.division{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-inline: solid 3px #494949;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.clockBt{
+    background-color: #49494987;
+    padding: 10px;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.warning{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+}

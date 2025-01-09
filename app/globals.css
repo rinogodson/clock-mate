@@ -2,20 +2,157 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+body{
+  background-color: #0b0b0b;
+  background-repeat: no-repeat;
+  color: rgb(240, 255, 244);
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  height: 100vh;
+  font-family: "Mona Sans", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.optionCont{
+  display: flex;
+  gap: 30px;
+  margin: 40px;
+  transform: scale(0.95);
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: start;
+}
+
+.optionSection{
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+  width: fit-content;
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 100000px;
+}
+
+.optionInput{
+  background-color: #0b0b0b;
+  width: 8ch;
+  height: 100px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 50px;
+  font-family: JetBrains Mono;
+}
+.optionInputCont{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.slider {
+  /* slider */
+  --slider-width: 100%;
+  --slider-height: 20px;
+  --slider-bg: rgb(82, 82, 82);
+  --slider-border-radius: 999px;
+  /* level */
+  --level-color: #fff;
+  --level-transition-duration: .1s;
+  /* icon */
+  --icon-margin: 15px;
+  --icon-color: var(--slider-bg);
+  --icon-size: 100px;
+}
+
+.slider {
+  cursor: pointer;
+  width: 100%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider .volume {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: var(--icon-margin);
+  color: var(--icon-color);
+  width: var(--icon-size);
+  height: auto;
+}
+
+.slider .level {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: var(--slider-width);
+  height: var(--slider-height);
+  background: var(--slider-bg);
+  overflow: hidden;
+  border-radius: var(--slider-border-radius);
+  -webkit-transition: height var(--level-transition-duration);
+  -o-transition: height var(--level-transition-duration);
+  transition: height var(--level-transition-duration);
+  cursor: inherit;
+}
+
+.slider .level::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+  -webkit-box-shadow: -200px 0 0 200px var(--level-color);
+  box-shadow: -200px 0 0 200px var(--level-color);
+}
+
+.continueBt{
+  background-color: #fff;
+  width: fit-content;
+  justify-self: center;
+  color: #0b0b0b;
+  font-size: 40px;
+  padding: 10px 20px;
+  font-family: Mona Sans;
+  font-weight: 500;
+  border-radius: 20px;
+}
+
+@media(max-width: 768px) {
+  body{
+    justify-content: center;
+  align-items: center;
+  padding: 0px;
   }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  .optionCont{
+    transform: scale(0.6);
+    align-items: center;
+  }
+  .optionSection{
+    font-size: 30px;
+    padding: 30px;
+  }
+  .optionInput{
+    font-size: 40px;
+  }
+  .p1{
+    transform: rotate(90deg);
+  }
 }
